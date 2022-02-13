@@ -12,6 +12,10 @@ const Button = (props) => {
         border: props.border ? props.border : '1px solid black',
         borderRadius: props.borderRadius ? props.borderRadius : '5px',
         padding: props.padding ? props.padding : '5px 10px',
+        fontWeight: props.fontWeight ? props.fontWeight : '400',
+        position: props.positon,
+        top: props.top,
+        right: props.right,
     };
 
     return (
