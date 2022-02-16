@@ -1,13 +1,42 @@
-var express = require("express");
-var app = express();
+const express = require("express");
+const app = express();
+const dotenv = require("dotenv");
+const mongoose = require("mongoose");
+const authRoute = require("./routes/auth");
+const userRoute = require("./routes/users");
+const postRoute = require("./routes/posts");
+const categoryRoute = require("./routes/categories");
+const multer = require("multer");
 
-const port = 5000;
+dotenv.config();
+app.use(express.json());
+app.use("/fetch/auth", authRoute);
+app.use("/fetch/users", userRoute);
+app.use("/fetch/posts", postRoute);
+app.use("/fetch/categories", categoryRoute);
 
-app.get("/", function(request, response) {
-   console.log(request);
-   response.send("Hello world with root path");
+mongoose
+  .connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(console.log("Database connected"))
+  .catch((err) => console.log(err));
+
+const storage = multer.diskStorage({
+  // callback function take care of errors
+  destination: (req, file, callback) => {
+    callback(null, "postImages");
+  },
+  filename: (req, file, callback) => {
+    callback(null, req.body.name);
+  },
 });
 
-app.listen(port, function() {
-   console.log(`App listening on port ${port}`);
+const upload = multer({ storage: storage });
+app.post("/fetch/upload", upload.single("file"), (req, res) => {
+  res.status(200).send("File uploaded!");
+});
+app.listen("5000", () => {
+  console.log("Backend is running at port 5000");
 });
