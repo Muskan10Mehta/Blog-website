@@ -9,30 +9,34 @@ import {
     StyledPostDate,
     StyledPostDescription,
 } from './styles';
+import { Link } from 'react-router-dom';
 
-export default function Post() {
+export default function Post({ post }) {
+    const publicFolder = 'http://localhost:3001/postImages/';
     return (
         <>
             <StyledPostCard>
-                <StyledImage
-                    src="https://images.unsplash.com/photo-1599420186946-7b6fb4e297f0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-                    alt="blog image"
-                ></StyledImage>
+                {post.header && (
+                    <StyledImage
+                        src={publicFolder + post.header}
+                        alt="blog image"
+                    ></StyledImage>
+                )}
                 <StyledInfoBox>
                     <StyledPostTags>
-                        <StyledPostTag>Music</StyledPostTag>
-                        <StyledPostTag>Life</StyledPostTag>
+                        {post.categories.map((category) => (
+                            <StyledPostTag>{category.name}</StyledPostTag>
+                        ))}
                     </StyledPostTags>
-                    <StyledPostTitle>Post Title here</StyledPostTitle>
-                    <StyledPostDate>1 hour ago</StyledPostDate>
+                    <Link to={`/viewpost/${post._id}`} className="link">
+                        <StyledPostTitle>{post.title}</StyledPostTitle>
+                    </Link>
+                    <StyledPostDate>
+                        {new Date(post.createdAt).toDateString()}
+                    </StyledPostDate>
                 </StyledInfoBox>
                 <StyledPostDescription>
-                    Something is brewing! Something is brewing! Something is
-                    brewing! Something is brewing! Something is brewing!
-                    Something is brewing! Something is brewing! Something is
-                    brewing! Something is brewing! Something is brewing!
-                    Something is brewing! Something is brewing! Something is
-                    brewing! Something is brewing! Something is brewing!
+                    {post.description}
                 </StyledPostDescription>
             </StyledPostCard>
         </>

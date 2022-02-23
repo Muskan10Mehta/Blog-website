@@ -4,39 +4,66 @@ import {
     StyledItems,
     StyledList,
     StyledListItem,
+    StyledImage,
 } from './styles';
 //import Button from '../button';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { Context } from '../../../context/Context';
 
-const NavBar = (props) => {
+const NavBar = () => {
+    const { user, dispatch } = useContext(Context);
+    const publicFolder = 'http://localhost:3001/postImages/';
+
+    const handleLogout = () => {
+        dispatch({ type: 'LOGOUT' });
+    };
     return (
         <>
             <StyledHeader>
                 <StyledItems>
                     <StyledList>
                         <StyledListItem>
-                            <Link to="/">Home</Link>
+                            <Link to="/" className="link">
+                                Home
+                            </Link>
                         </StyledListItem>
                         <StyledListItem>
-                            <Link to="/write"> Write</Link>
+                            <Link to="/write" className="link">
+                                Write
+                            </Link>
                         </StyledListItem>
 
-                        {props.user ? (
+                        {user ? (
                             <>
-                                <StyledListItem>
-                                    <Link to="">Logout</Link>
+                                <StyledListItem onClick={handleLogout}>
+                                    <Link to="/login" className="link">
+                                        Logout
+                                    </Link>
                                 </StyledListItem>
-                                <StyledListItem>
-                                    <Link to="/settings">User</Link>
+                                <StyledListItem username>
+                                    <Link to="/settings" className="link">
+                                        {user.username}
+                                        <StyledImage
+                                            src={
+                                                publicFolder +
+                                                user.profilePicture
+                                            }
+                                        />
+                                    </Link>
                                 </StyledListItem>
                             </>
                         ) : (
                             <>
                                 <StyledListItem>
-                                    <Link to="/login">Login</Link>
+                                    <Link to="/login" className="link">
+                                        Login
+                                    </Link>
                                 </StyledListItem>
                                 <StyledListItem>
-                                    <Link to="/signup">Signup</Link>
+                                    <Link to="/signup" className="link">
+                                        Signup
+                                    </Link>
                                 </StyledListItem>
                             </>
                         )}

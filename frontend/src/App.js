@@ -8,12 +8,14 @@ import Write from './pages/write';
 import Login from './pages/login';
 import Signup from './pages/signup';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useContext } from 'react';
+import { Context } from './context/Context';
 function App() {
-    const user = false;
+    const { user } = useContext(Context);
     return (
         <div className="App">
             <Router>
-                <NavBar user={user} />
+                <NavBar />
                 <Routes>
                     <Route exact path="/" element={<Home />}></Route>
                     <Route

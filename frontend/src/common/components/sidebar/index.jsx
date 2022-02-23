@@ -1,3 +1,7 @@
+import axios from 'axios';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './styles';
 import {
     StyledSideBarArea,
@@ -7,6 +11,15 @@ import {
 } from './styles';
 
 export default function SideBar() {
+    const [categories, setCategory] = useState([]);
+
+    useEffect(() => {
+        const getCategory = async () => {
+            const response = await axios.get('/categories');
+            setCategory(response.data);
+        };
+        getCategory();
+    }, []);
     return (
         <>
             <StyledSideBarArea>
@@ -14,12 +27,14 @@ export default function SideBar() {
                 <p>Something here, lts of text blah blha blha.</p>
                 <StyledTitle>CATGORIES</StyledTitle>
                 <StyledList>
-                    <StyledListItem>Life</StyledListItem>
-                    <StyledListItem>Music</StyledListItem>
-                    <StyledListItem>Style</StyledListItem>
-                    <StyledListItem>Sport</StyledListItem>
-                    <StyledListItem>Technology</StyledListItem>
-                    <StyledListItem>Cinema</StyledListItem>
+                    {categories.map((category) => (
+                        <Link
+                            to={`/?category=${category.name}`}
+                            className="link"
+                        >
+                            <StyledListItem>{category.name}</StyledListItem>
+                        </Link>
+                    ))}
                 </StyledList>
             </StyledSideBarArea>
         </>

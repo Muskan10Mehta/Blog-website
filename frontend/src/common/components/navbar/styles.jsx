@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const StyledHeader = styled.div`
     color: white;
@@ -30,4 +30,18 @@ export const StyledListItem = styled.li`
     font-size: 25px;
     cursor: pointer;
     display: inline;
+
+    ${(props) =>
+        props.username &&
+        css`
+            color: coral;
+            font-size: 25px;
+        `};
+`;
+export const StyledImage = styled.img`
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 5px;
 `;

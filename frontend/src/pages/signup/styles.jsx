@@ -30,3 +30,14 @@ export const StyledInput = styled.input`
     border: none;
     border-bottom: 1px solid black;
 `;
+
+export const StyledError = styled.div`
+    font-size: 20px;
+    margin: 10px;
+    color: black;
+    word-wrap: normal;
+    width: 33%;
+    border: 1px solid black;
+    border-radius: 7px;
+    padding: 5px;
+`;

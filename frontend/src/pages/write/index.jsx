@@ -1,3 +1,4 @@
+/* eslint-disable no-const-assign */
 import './styles';
 import './index.css';
 import {
@@ -9,13 +10,54 @@ import {
     StyledWriteArea,
 } from './styles';
 import Button from './../../common/components/button';
+import { useContext, useState } from 'react';
+import axios from 'axios';
+import { Context } from './../../context/Context';
 
-export default function write() {
+export default function Write() {
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [file, setFile] = useState(null);
+    const { user } = useContext(Context);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const newPost = {
+            username: user.username,
+            title,
+            description,
+        };
+        if (file) {
+            const data = new FormData();
+
+            //creates unique filename,if user adds file with same name again it won't create conflict
+            const fileName = Date.now() + file.name;
+            data.append('name', fileName);
+            data.append('file', file);
+            newPost.header = fileName;
+
+            try {
+                await axios.post('/upload', data);
+            } catch (err) {}
+        }
+        try {
+            const response = await axios.post('/posts', newPost);
+            window.location.replace('/viewpost/' + response.data._id);
+        } catch (err) {}
+    };
+
     return (
         <>
             <StyledWriteArea>
-                <StyledHeaderImage src="https://images.unsplash.com/photo-1627892543008-e3761263b8d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=919&q=80"></StyledHeaderImage>
-                <StyledForm>
+                {/* {isError && <p>Error in uploading file...</p>} */}
+                {file && (
+                    //creates url for the file
+                    <StyledHeaderImage
+                        src={URL.createObjectURL(file)}
+                    ></StyledHeaderImage>
+                )}
+
+                <StyledForm onSubmit={handleSubmit}>
                     <StyledFormGroup>
                         <Button
                             onclick=""
@@ -23,6 +65,7 @@ export default function write() {
                             position="absolute"
                             top="20px"
                             right="50px"
+                            type="submit"
                         />
                         <StyledLable for="fileInput">
                             Add Header Image
@@ -31,11 +74,13 @@ export default function write() {
                             type="file"
                             id="fileInput"
                             style={{ display: 'none' }}
+                            onChange={(e) => setFile(e.target.files[0])}
                         ></StyledInput>
                         <StyledInput
                             type="text"
                             placeholder="Title"
                             autoFocus={true}
+                            onChange={(e) => setTitle(e.target.value)}
                         ></StyledInput>
                     </StyledFormGroup>
                     <StyledFormGroup>
@@ -43,6 +88,7 @@ export default function write() {
                             placeholder="Write your post here..."
                             type="text"
                             className="writeText"
+                            onChange={(e) => setDescription(e.target.value)}
                         ></textarea>
                     </StyledFormGroup>
                 </StyledForm>

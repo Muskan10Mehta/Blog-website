@@ -19,7 +19,12 @@ const Button = (props) => {
     };
 
     return (
-        <button style={buttonStyle} onClick={props.clickHandler} {...props}>
+        <button
+            style={buttonStyle}
+            onClick={props.clickHandler}
+            disabled={props.disabled}
+            {...props}
+        >
             {props.label}
         </button>
     );
