@@ -6,35 +6,49 @@ export const StyledHeader = styled.div`
     position: Sticky;
     top: 0;
     display: flex;
-    background-color: white;
+    background-color: black;
     padding: 5px;
+    height: 55px;
+    font-family: 'Nunito', sans-serif;
 `;
 
-export const StyledItems = styled.div`
+export const StyledItemsLeft = styled.div`
     color: black;
     text-decoration: none;
-    flex: 6;
+    align-items: left;
+    flex: 8;
+`;
+export const StyledItemsRight = styled.div`
+    color: black;
+    text-decoration: none;
+    align-items: right;
+    flex: 4;
 `;
 export const StyledList = styled.ul`
     color: black;
     text-decoration: none;
     list-style-type: none;
     display: inline;
-    align-items: left;
+    margin-left: 50px;
 `;
 export const StyledListItem = styled.li`
-    color: black;
+    color: white;
     text-decoration: none;
-    padding: 0;
-    margin-right: 30px;
-    font-size: 25px;
+    font-size: 30px;
     cursor: pointer;
     display: inline;
+    margin-right: 20px;
 
+    ${(props) =>
+        props.logout &&
+        css`
+            color: orange;
+        `};
     ${(props) =>
         props.username &&
         css`
-            color: coral;
+            font-style: italic;
+            color: orange;
             font-size: 25px;
         `};
 `;
@@ -43,5 +57,6 @@ export const StyledImage = styled.img`
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
-    margin-left: 5px;
+    margin-left: 10px;
+    margin-bottom: 7px;
 `;

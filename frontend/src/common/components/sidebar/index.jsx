@@ -23,8 +23,6 @@ export default function SideBar() {
     return (
         <>
             <StyledSideBarArea>
-                <StyledTitle>ABOUT ME</StyledTitle>
-                <p>Something here, lts of text blah blha blha.</p>
                 <StyledTitle>CATGORIES</StyledTitle>
                 <StyledList>
                     {categories.map((category) => (

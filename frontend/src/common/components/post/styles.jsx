@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledPostCard = styled.div`
     width: 400px;
-    margin: 0px 25px 40px 50px;
+    margin: 50px 25px 40px 50px;
     border: 1px solid black;
     border-radius: 5px;
     padding: 5px;

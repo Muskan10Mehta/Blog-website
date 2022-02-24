@@ -1,11 +1,11 @@
 import './styles';
-import { StyledHeading } from './styles';
+import { StyledHeading, StyledText } from './styles';
 
 export default function Header() {
     return (
         <>
             <StyledHeading>
-                <p> The Daily Post</p>
+                <StyledText>The Daily Post</StyledText>
             </StyledHeading>
         </>
     );

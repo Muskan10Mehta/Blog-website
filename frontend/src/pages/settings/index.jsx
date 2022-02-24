@@ -9,7 +9,6 @@ import {
     StyledSettingsTitle,
     StyledSettingsWrapper,
 } from './styles';
-import SideBar from '../../common/components/sidebar';
 import Button from './../../common/components/button';
 import { Context } from '../../context/Context';
 import { useContext, useState } from 'react';
@@ -132,7 +131,6 @@ export default function Settings() {
                         {success && <h4>Profile Updated!</h4>}
                     </StyledSettingsForm>
                 </StyledSettingsWrapper>
-                <SideBar />
             </StyledSettingsArea>
         </>
     );

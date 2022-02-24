@@ -17,6 +17,7 @@ import { Context } from './../../context/Context';
 export default function Write() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    const [categories, setCategories] = useState('');
     const [file, setFile] = useState(null);
     const { user } = useContext(Context);
 
@@ -26,7 +27,13 @@ export default function Write() {
             username: user.username,
             title,
             description,
+            categories,
         };
+
+        if (categories) {
+            newPost.categories = categories.split(',');
+        }
+
         if (file) {
             const data = new FormData();
 
@@ -59,6 +66,12 @@ export default function Write() {
 
                 <StyledForm onSubmit={handleSubmit}>
                     <StyledFormGroup>
+                        <StyledInput
+                            type="text"
+                            placeholder="add categories here seperated by commas..."
+                            autoFocus={true}
+                            onChange={(e) => setCategories(e.target.value)}
+                        ></StyledInput>
                         <Button
                             onclick=""
                             label="Publish"

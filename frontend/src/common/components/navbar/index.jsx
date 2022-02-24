@@ -1,10 +1,11 @@
 import React from 'react';
 import {
     StyledHeader,
-    StyledItems,
     StyledList,
     StyledListItem,
     StyledImage,
+    StyledItemsLeft,
+    StyledItemsRight,
 } from './styles';
 //import Button from '../button';
 import { Link } from 'react-router-dom';
@@ -21,7 +22,7 @@ const NavBar = () => {
     return (
         <>
             <StyledHeader>
-                <StyledItems>
+                <StyledItemsLeft>
                     <StyledList>
                         <StyledListItem>
                             <Link to="/" className="link">
@@ -33,14 +34,12 @@ const NavBar = () => {
                                 Write
                             </Link>
                         </StyledListItem>
-
+                    </StyledList>
+                </StyledItemsLeft>
+                <StyledItemsRight>
+                    <StyledList>
                         {user ? (
                             <>
-                                <StyledListItem onClick={handleLogout}>
-                                    <Link to="/login" className="link">
-                                        Logout
-                                    </Link>
-                                </StyledListItem>
                                 <StyledListItem username>
                                     <Link to="/settings" className="link">
                                         {user.username}
@@ -50,6 +49,11 @@ const NavBar = () => {
                                                 user.profilePicture
                                             }
                                         />
+                                    </Link>
+                                </StyledListItem>
+                                <StyledListItem onClick={handleLogout} logout>
+                                    <Link to="/login" className="link">
+                                        Logout
                                     </Link>
                                 </StyledListItem>
                             </>
@@ -67,12 +71,8 @@ const NavBar = () => {
                                 </StyledListItem>
                             </>
                         )}
-
-                        {/* <StyledListItem>
-                            <Link to="/settings">user</Link>
-                        </StyledListItem> */}
                     </StyledList>
-                </StyledItems>
+                </StyledItemsRight>
             </StyledHeader>
         </>
     );
