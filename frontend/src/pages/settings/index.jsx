@@ -1,7 +1,7 @@
 import './styles';
 import {
     StyledfFormInput,
-    StyledFormLable,
+    StyledFormLabel,
     StyledProfileImage,
     StyledProfilePicture,
     StyledSettingsArea,
@@ -82,7 +82,7 @@ export default function Settings() {
                         />
                     </StyledSettingsTitle>
                     <StyledSettingsForm onSubmit={handleSubmit}>
-                        <StyledFormLable>Profile Picture :</StyledFormLable>
+                        <StyledFormLabel>Profile Picture :</StyledFormLabel>
                         <StyledProfilePicture>
                             <StyledProfileImage
                                 src={
@@ -92,9 +92,9 @@ export default function Settings() {
                                 }
                             ></StyledProfileImage>
 
-                            <StyledFormLable htmlFor="fileInput">
+                            <StyledFormLabel htmlFor="fileInput">
                                 Add/Change
-                            </StyledFormLable>
+                            </StyledFormLabel>
                             <StyledfFormInput
                                 type="file"
                                 id="fileInput"
@@ -102,23 +102,26 @@ export default function Settings() {
                                 onChange={(e) => setFile(e.target.files[0])}
                             ></StyledfFormInput>
                         </StyledProfilePicture>
-                        <StyledFormLable>Username: </StyledFormLable>
+                        <StyledFormLabel>Username: </StyledFormLabel>
                         <StyledfFormInput
                             type="text"
                             placeholder={user.username}
                             onChange={(e) => setUsername(e.target.value)}
+                            required
                         ></StyledfFormInput>
-                        <StyledFormLable>Email: </StyledFormLable>
+                        <StyledFormLabel>Email: </StyledFormLabel>
                         <StyledfFormInput
                             type="email"
                             placeholder={user.email}
                             onChange={(e) => setEmail(e.target.value)}
+                            required
                         ></StyledfFormInput>
-                        <StyledFormLable>Password: </StyledFormLable>
+                        <StyledFormLabel>Password: </StyledFormLabel>
                         <StyledfFormInput
                             type="password"
                             placeholder="password"
                             onChange={(e) => setPassword(e.target.value)}
+                            required
                         ></StyledfFormInput>
                         <Button
                             label="Update Account"

@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const StyledSideBarArea = styled.div`
     flex: 3;
-    margin: 50px;
+    margin: 30px;
+    margin-top: 50px;
     padding-bottom: 30px;
     background-color: white;
     border: 1px solid black;

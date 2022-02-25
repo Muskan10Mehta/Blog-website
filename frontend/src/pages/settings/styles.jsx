@@ -20,7 +20,7 @@ export const StyledSettingsForm = styled.form`
     justify-content: center;
     align-items: center;
 `;
-export const StyledFormLable = styled.label`
+export const StyledFormLabel = styled.label`
     font-weight: 600px;
     font-size: 20px;
     margin-left: 10px;

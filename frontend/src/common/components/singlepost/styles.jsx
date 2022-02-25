@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 export const SytledSinglePostArea = styled.div`
     flex: 9;
+    margin: 30px 70px;
 `;
 
 export const StyledSinglePostWrapper = styled.div`

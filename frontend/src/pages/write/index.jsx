@@ -6,7 +6,7 @@ import {
     StyledFormGroup,
     StyledHeaderImage,
     StyledInput,
-    StyledLable,
+    StyledLabel,
     StyledWriteArea,
 } from './styles';
 import Button from './../../common/components/button';
@@ -32,6 +32,7 @@ export default function Write() {
 
         if (categories) {
             newPost.categories = categories.split(',');
+            await axios.post('/categories', newPost.categories);
         }
 
         if (file) {
@@ -66,12 +67,6 @@ export default function Write() {
 
                 <StyledForm onSubmit={handleSubmit}>
                     <StyledFormGroup>
-                        <StyledInput
-                            type="text"
-                            placeholder="add categories here seperated by commas..."
-                            autoFocus={true}
-                            onChange={(e) => setCategories(e.target.value)}
-                        ></StyledInput>
                         <Button
                             onclick=""
                             label="Publish"
@@ -80,9 +75,9 @@ export default function Write() {
                             right="50px"
                             type="submit"
                         />
-                        <StyledLable for="fileInput">
+                        <StyledLabel for="fileInput">
                             Add Header Image
-                        </StyledLable>
+                        </StyledLabel>
                         <StyledInput
                             type="file"
                             id="fileInput"
@@ -94,6 +89,15 @@ export default function Write() {
                             placeholder="Title"
                             autoFocus={true}
                             onChange={(e) => setTitle(e.target.value)}
+                        ></StyledInput>
+                    </StyledFormGroup>
+                    <StyledFormGroup>
+                        <StyledInput
+                            type="text"
+                            placeholder="add categories here seperated by commas..."
+                            autoFocus={true}
+                            onChange={(e) => setCategories(e.target.value)}
+                            categories
                         ></StyledInput>
                     </StyledFormGroup>
                     <StyledFormGroup>

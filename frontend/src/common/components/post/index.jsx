@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 
 export default function Post({ post }) {
     const publicFolder = 'http://localhost:3001/postImages/';
+
     return (
         <>
             <StyledPostCard>
@@ -25,7 +26,12 @@ export default function Post({ post }) {
                 <StyledInfoBox>
                     <StyledPostTags>
                         {post.categories.map((category) => (
-                            <StyledPostTag>{category.name}</StyledPostTag>
+                            <Link
+                                to={`/?category=${category}`}
+                                className="link"
+                            >
+                                <StyledPostTag>{category}</StyledPostTag>
+                            </Link>
                         ))}
                     </StyledPostTags>
                     <Link to={`/viewpost/${post._id}`} className="link">

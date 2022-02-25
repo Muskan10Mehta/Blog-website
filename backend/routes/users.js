@@ -7,13 +7,29 @@ router.put("/:id", async (req, res) => {
   console.log("Sending the response of the put request");
   res.setHeader("Content-Type", "application/json");
 
+  console.log("ok1");
+  console.log(req.params.id);
+  console.log(req.body.userId);
   if (req.body.userId === req.params.id) {
     if (req.body.password) {
       const salt = await bcrypt.genSalt(10);
       req.body.password = await bcrypt.hash(req.body.password, salt);
     }
+    console.log("ok2");
 
     try {
+      const user = await User.findById(req.params.id);
+      console.log("ok3");
+      const updateAuthor = {
+        $set: {
+          username: req.body.username,
+        },
+      };
+      console.log("ok4");
+      await Post.updateMany({ username: user.username }, updateAuthor);
+      console.log("ok5");
+      res.status(200).send("updated username");
+
       const updatedUser = await User.findByIdAndUpdate(
         req.params.id,
         {

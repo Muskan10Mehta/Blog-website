@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const StyledWriteArea = styled.div`
     padding-top: 50px;
@@ -27,8 +27,14 @@ export const StyledInput = styled.input`
     &:focus {
         outline: none;
     }
+
+    ${(props) =>
+        props.categories &&
+        css`
+            width: 80%;
+        `}
 `;
-export const StyledLable = styled.label`
+export const StyledLabel = styled.label`
     cursor: pointer;
     border: 1px solid black;
     border-radius: 5px;
