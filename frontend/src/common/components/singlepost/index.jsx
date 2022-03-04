@@ -65,6 +65,7 @@ export default function SinglePost() {
         };
 
         if (file) {
+            console.log('found file');
             const data = new FormData();
 
             //creates unique filename,if user adds file with same name again it won't create conflict
@@ -72,7 +73,7 @@ export default function SinglePost() {
             data.append('name', fileName);
             data.append('file', file);
             updatedPost.header = fileName;
-            console.log(updatedPost.header);
+            //console.log(updatedPost.header);
 
             try {
                 await axios.post('/upload', data);

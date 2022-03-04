@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
 // update post
 router.put("/:id", async (req, res) => {
   console.log("Sending the response of the put request");
-  res.setHeader("Content-Type", "application/json");
+  //res.setHeader("Content-Type", "application/json");
   try {
     const post = await Post.findById(req.params.id);
 

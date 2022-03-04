@@ -32,7 +32,7 @@ export default function Write() {
 
         if (categories) {
             newPost.categories = categories.split(',');
-            await axios.post('/categories', newPost.categories);
+            // await axios.post('/categories', newPost.categories);
         }
 
         if (file) {
@@ -57,7 +57,6 @@ export default function Write() {
     return (
         <>
             <StyledWriteArea>
-                {/* {isError && <p>Error in uploading file...</p>} */}
                 {file && (
                     //creates url for the file
                     <StyledHeaderImage
