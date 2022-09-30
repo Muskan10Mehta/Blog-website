@@ -14,7 +14,7 @@ export const LoginFailure = () => ({
 export const Logout = () => ({
     type: 'LOGOUT',
 });
-export const uupdateStart = () => ({
+export const updateStart = () => ({
     type: 'UPDATE_START',
 });
 
